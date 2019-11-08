@@ -101,6 +101,7 @@ function PhoneActionsHandler() {
             return;
         }
         resetBtnState();
+        console.log('action');
 
         text = text.substring(0, textLength - 1);
         display.innerText = text;
@@ -111,6 +112,7 @@ function PhoneActionsHandler() {
         counter = 0;
         resetBtnData = true;
     }
+
 
     const setTime = function (time) {
         timer = setTimeout(() => {
@@ -134,6 +136,8 @@ function PhoneActionsHandler() {
             return;
         }
 
+        console.log(typeof arr)
+
         setTime(3000);
 
         if (!resetBtnData) {
@@ -155,6 +159,7 @@ function PhoneActionsHandler() {
 
         counter++;
     }
+
 
     const switchAnotherCharacter = function (str) {
         display.innerHTML += str;
