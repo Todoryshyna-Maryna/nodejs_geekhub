@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="phone">
+    <p id="display" class="display">
+
+    </p>
+
+    <article class="buttons">
+        <div class="phone-btn -contacts" data-btn="contacts" onclick="phone.actionBtnClick('contacts')">contacts</div>
+
+        <div class="phone-btn -menu" data-btn="menu" onclick="phone.actionBtnClick('menu')">menu</div>
+
+        <div class="phone-btn -reset" id="reset" data-btn="reset" onclick="phone.actionBtnClick('reset')">del</div>
+    </article>
+
+    <article class="buttons">
+        <div class="phone-btn" data-btn="1" onclick="phone.numBtnClick(1)">1</div>
+        <div class="phone-btn" data-btn="2" onclick="phone.numBtnClick(2)">2</div>
+        <div class="phone-btn" data-btn="3" onclick="phone.numBtnClick(3)">3</div>
+
+        <div class="phone-btn" data-btn="star" onclick="phone.charBtnClick('star')">*</div>
+        <div class="phone-btn" data-btn="space" onclick="phone.charBtnClick('space')"> _ </div>
+        <div class="phone-btn" data-btn="sharp" onclick="phone.charBtnClick('sharp')">#</div>
+    </article>
+
+</section>
+
+
+<script src="hw_4.1.js"></script>
+</body>
+</html>

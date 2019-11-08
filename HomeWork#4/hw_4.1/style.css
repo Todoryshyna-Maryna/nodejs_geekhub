@@ -1,0 +1,23 @@
+.phone {
+    width: 200px;
+}
+.phone .display {
+    height: 50px;
+    background-color: #dedede;
+    word-break: break-all;
+}
+.phone .buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+.phone .phone-btn {
+    width: 32.2%;
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid #dedede;
+    cursor: pointer;
+}
+.space {
+    width: 10px;
+    display: inline-block;
+}
