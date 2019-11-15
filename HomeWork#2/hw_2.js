@@ -9,17 +9,23 @@
 // first correspond to the number of matches in second and return %.
 
 
-
-let arr = [6, 9, 4, 18, 3, 10, 21, 7];
+let arr = [6, 9, 4, 18, 3, 10, 21, 7, null, Infinity, '656', undefined];
 
 // ------------------Find in array: sum, min and max, replace min and max - create custom functions
 function MathFind() {
 
     this.findSum = function (arr) {
+
         let sum = 0;
 
         arr.map((item) => {
-            sum += item;
+
+            if (item && Number.isFinite(item)) {
+                sum += item;
+            } else {
+                console.log('not a number: ', item)
+            }
+
         })
 
         return sum;
@@ -32,47 +38,25 @@ function MathFind() {
     }
 
 
-    this.findMin = function (arr) {
-        let min = arr[0];
+    this.findMinMax = function (arr, arg) {
+        let result = arr[0];
 
         arr.forEach((item) => {
-            if (item < min) {
-                min = item;
+            if (item > result && arg === 'max') {
+                result = item;
             }
-            return min;
+            if (item < result && arg === 'min') {
+                result = item;
+            }
         })
 
-        return min;
-    }
-
-    this.findMin2 = function findMin2(arr) {
-        let min = Math.min.apply(null, arr);
-        return min;
-    }
-
-
-    this.findMax = function findMax(arr) {
-        let max = arr[0];
-
-        arr.forEach((item) => {
-            if (item > max) {
-                max = item;
-            }
-            return max;
-        })
-
-        return max;
-    }
-
-    this.findMax2 = function (arr) {
-        let min = Math.max.apply(null, arr);
-        return min;
+        return result;
     }
 
 
     this.replaceMinAndMax = function (arr) {
-        let min = this.findMin(arr);
-        let max = this.findMax(arr);
+        let min = this.findMinMax(arr, 'min');
+        let max = this.findMinMax(arr, 'max');
 
         arr.forEach((item, index) => {
             if (min === item) {
@@ -110,30 +94,20 @@ console.log(func(function (param) {
 
 
 // ------------------Create a function that will replace all number dividing three with ‘foo’, dividing seven with ‘bar’ and dividing three and seven with ‘foobar’. Function with n params.
-function replaceDivider(arr) {
-    let divide3 = 3;
-    let divide7 = 7;
-    let foo = 'foo';
-    let bar = 'bar';
-    let foobar = 'foobar';
+function replaceDivider(n) {
+    let result = n;
 
-    arr.forEach((item, index) => {
-
-        if (item % divide3 === 0 && item % divide7 !== 0) {
-            arr[index] = foo;
+    if (n % 3 === 0) {
+        if (n % 7 !== 0) {
+            result = 'foo';
+        } else if (n % 7 === 0) {
+            result = 'foobar';
         }
+    } else if (n % 7 === 0) {
+        result = 'bar';
+    }
 
-        if (item % divide7 === 0 && item % divide3 !== 0) {
-            arr[index] = bar;
-        }
-
-        if (item % divide3 === 0 && item % divide7 === 0) {
-            arr[index] = foobar;
-        }
-
-    })
-
-    return arr;
+    return result;
 }
 
 
@@ -147,14 +121,16 @@ function compareStrings(str1, str2) {
     }
 
 
-    for (let i = 0; i < maxStringLength; i++) {
-        if (str1[i] === str2[i]) {
-            coincidence++;
+    for (let i = 0; i < str1.length; i++) {
+        for (let j = 0; j < str2.length; j++) {
+            if (str1[i] === str2[j]) {
+                coincidence++;
+            }
         }
     }
 
 
-    coincidence = Math.round((coincidence * 100) / maxStringLength) + '%';
+    coincidence = Math.round((coincidence * 100) / (str1.length + str2.length)) + '%';
 
     console.log(coincidence);
 }
@@ -165,21 +141,22 @@ let mf = new MathFind();
 console.log('findSum');
 console.log(mf.findSum(arr));
 
-console.log('findMin');
-console.log(mf.findMin(arr));
 
-console.log('findMax');
-console.log(mf.findMax(arr));
+console.log('findMinMax, min');
+console.log(mf.findMinMax(arr, 'min'));
+console.log('findMinMax, max');
+console.log(mf.findMinMax(arr, 'max'));
 
 
 console.log('replaceMinAndMax');
 console.log(mf.replaceMinAndMax(arr));
 
 console.log('returnFunction');
-console.log(returnFunction('callback'));
+console.log(returnData('callback'));
 
 console.log('replaceDivider');
-console.log(replaceDivider(arr));
+console.log(replaceDivider(21));
 
 console.log('compareStrings');
-console.log(compareStrings('nodejs', 'comparedString'));
+console.log(compareStrings('aaa', 'yay'));
+console.log(compareStrings('aaw', 'wad'));
