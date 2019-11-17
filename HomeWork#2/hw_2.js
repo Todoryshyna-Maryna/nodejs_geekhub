@@ -114,25 +114,24 @@ function replaceDivider(n) {
 // ------------------Create function with 2 string params. It must check if letters in the first correspond to the number of matches in second and return %.
 function compareStrings(str1, str2) {
     let coincidence = 0;
-    let maxStringLength = str1.length;
+    let maxStringLength = str1.length >= str2.length ? str1.length : str2.length;
+    let minStringLength = str1.length <= str2.length ? str1.length : str2.length;
 
-    if (str1.length < str2.length) {
-        maxStringLength = str2.length;
-    }
+    let arr1 = str1.split('').sort().join('');
+    let arr2 = str2.split('').sort().join('');
 
 
-    for (let i = 0; i < str1.length; i++) {
-        for (let j = 0; j < str2.length; j++) {
-            if (str1[i] === str2[j]) {
-                coincidence++;
-            }
+    for (let i = 0; i < minStringLength; i++) {
+
+        if (arr1[i] === arr2[i]) {
+            coincidence++;
         }
+
     }
 
+    coincidence = Math.round((coincidence * 100) / (maxStringLength)) + '%';
 
-    coincidence = Math.round((coincidence * 100) / (str1.length + str2.length)) + '%';
-
-    console.log(coincidence);
+    return coincidence;
 }
 
 
@@ -158,5 +157,8 @@ console.log('replaceDivider');
 console.log(replaceDivider(21));
 
 console.log('compareStrings');
-console.log(compareStrings('aaa', 'yay'));
-console.log(compareStrings('aaw', 'wad'));
+console.log('aaa, yay :', compareStrings('aaa', 'yay'));
+console.log('yay, yay :', compareStrings('yay', 'yay'));
+console.log('aaaw, wad :', compareStrings('aaaw', 'wad'));
+console.log('doawdaawd, wad:', compareStrings('doawdaawd', 'wad'));
+console.log('aaaa, aaa:', compareStrings('aaaa', 'aaa'));
