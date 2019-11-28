@@ -6,18 +6,21 @@
 
 .slider-content {
     width: 100%;
-    height: 250px;
+    height: 100vh;
+    min-height: 250px;
     overflow: hidden;
 }
 
 .scrolled-content {
-    height: 250px;
+    height: inherit;
+    min-height: inherit;
     transition: 0.7s;
 }
 
 .slide-item {
     width: 350px;
-    height: 200px;
+    height: inherit;
+    min-height: inherit;
     display: inline-block;
     border-radius: 6px;
     overflow: hidden;
