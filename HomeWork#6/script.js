@@ -11,10 +11,10 @@ const readline = require('readline');
 const fs = require('fs');
 
 
-const fsWriteStream = fs.createWriteStream('./files/file');
 const linesCount = 1e4;
 // const linesCount = 10;
 
+let fsWriteStream;
 let fsReadStream;
 
 let currentDate = new Date();
@@ -25,6 +25,7 @@ let sign = '<< Marina Todorishina, web developer >>' + currentDate;
 
 
 function writeFile() {
+    fsWriteStream = fs.createWriteStream('./files/file');
     for (let i = 0; i < linesCount; i++) {
         addToFile(text);
     }
@@ -46,8 +47,6 @@ function readFile() {
 function readFileByLine(line, index, fileLength) {
 
     // output lines with timer
-
-
     // (function () {
     //
     //     setTimeout(() => {
@@ -99,24 +98,33 @@ function transform(line) {
         let digits = line.replace(new RegExp("[^0-9]", "g"), '');
 
         console.log('line ', newString);
-        addToFile(digits + '\n');
+        writeDigitsToFile(digits + '\n');
     }
 
     this.toUppercase();
     this.replaceNubers();
 }
 
+function writeDigitsToFile(data) {
+    fs.createWriteStream('./files/file-with-digits').write(data + '\n' + sign);
+    // addToFile(data)
+}
 
 function addToFile(data) {
     fsWriteStream.write(data)
 }
 
+function createDir() {
+    fs.mkdir('files', {recursive: true}, function () {
+        return 'Dir created!';
+    })
+}
+
 
 Promise.all([
-    fs.mkdir('./files', function()  {
-        return 'Dir created!';
-    }),
-    writeFile()])
+    createDir(),
+    writeFile()
+])
     .then((response) => {
 
         console.log(response);
