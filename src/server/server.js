@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 
 
-require('./router');
+require('./api-routes/router');
 
 
 const port = process.env.PORT || 8000;

@@ -1,3 +1,10 @@
-Create simple server on express that will render index.html for you. This index.html
- should include full react/angular/etc application “Hello World”. (edited) 
- 
+Миграция на создания первого юзера
+Просмотр всех юзеров
+Добавление, редактирование и удаление юзеров
+Апи дока
+Разделение файлов и папок относительно https://blog.logrocket.com/the-perfect-architecture-flow-for-your-next-node-js-project/
+Добавить конфиг
+Добавить админку
+Настроить стайл гайд
+Написать комменты
+Заюзать gzip
